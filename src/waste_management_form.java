@@ -37,7 +37,7 @@ public class waste_management_form extends javax.swing.JFrame {
         wastage_materials_clear_btn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         wastage_material_name.setText("Name");
 
