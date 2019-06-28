@@ -47,6 +47,11 @@ public class VendorDetails extends javax.swing.JFrame {
         jLabel1.setText("Vendor Details");
 
         vendor_add.setText("Add");
+        vendor_add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vendor_addActionPerformed(evt);
+            }
+        });
 
         vendor_edit.setText("Edit");
         vendor_edit.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +152,12 @@ public class VendorDetails extends javax.swing.JFrame {
         
         // TODO add your handling code here:
     }//GEN-LAST:event_loadActionPerformed
+
+    private void vendor_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vendor_addActionPerformed
+        AddMaterial m = new AddMaterial();
+        m.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_vendor_addActionPerformed
 
     /**
      * @param args the command line arguments
