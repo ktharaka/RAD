@@ -42,6 +42,11 @@ public class dashboard extends javax.swing.JFrame {
         jButton1.setText("Materials");
 
         jButton2.setText("Vendors");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Production");
 
@@ -122,6 +127,12 @@ public class dashboard extends javax.swing.JFrame {
         w.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        VendorDetails v = new VendorDetails();
+        v.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
