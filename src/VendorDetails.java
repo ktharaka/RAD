@@ -1,3 +1,9 @@
+
+import java.sql.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import net.proteanit.sql.DbUtils;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -33,9 +39,9 @@ public class VendorDetails extends javax.swing.JFrame {
         vendor_delete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        vendor_search = new javax.swing.JButton();
+        load = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Vendor Details");
@@ -61,7 +67,12 @@ public class VendorDetails extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        vendor_search.setText("Search");
+        load.setText("Load to table");
+        load.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -78,8 +89,8 @@ public class VendorDetails extends javax.swing.JFrame {
                         .addComponent(vendor_add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(vendor_edit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(vendor_delete, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
-                    .addComponent(vendor_search))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
+                    .addComponent(load))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(147, 147, 147))
         );
@@ -96,7 +107,7 @@ public class VendorDetails extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(vendor_delete)
                         .addGap(33, 33, 33)
-                        .addComponent(vendor_search)
+                        .addComponent(load)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
@@ -116,11 +127,26 @@ public class VendorDetails extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void vendor_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vendor_editActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_vendor_editActionPerformed
+
+    private void loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadActionPerformed
+
+        try {
+           Statement s = DBConnect.getConnection().createStatement();
+           ResultSet rs = s.executeQuery("select * from vendor");
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            
+        } catch (Exception e) {
+            System.out.println("Exception = "+e);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,9 +188,9 @@ public class VendorDetails extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton load;
     private javax.swing.JButton vendor_add;
     private javax.swing.JButton vendor_delete;
     private javax.swing.JButton vendor_edit;
-    private javax.swing.JButton vendor_search;
     // End of variables declaration//GEN-END:variables
 }
