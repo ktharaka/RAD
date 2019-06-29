@@ -38,7 +38,6 @@ public class AddMaterial extends javax.swing.JFrame {
         mat_ven_name = new javax.swing.JComboBox<>();
         mat_add = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -54,6 +53,7 @@ public class AddMaterial extends javax.swing.JFrame {
         jLabel5.setText("Select Vender");
 
         mat_name.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mango", "Suger", "Water", "Bottle" }));
+        mat_name.setSelectedIndex(-1);
         mat_name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mat_nameActionPerformed(evt);
@@ -61,6 +61,7 @@ public class AddMaterial extends javax.swing.JFrame {
         });
 
         mat_ven_name.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Saroj", "Kasun", "Bavindu", "Bhanuka" }));
+        mat_ven_name.setSelectedIndex(-1);
 
         mat_add.setText("Add");
         mat_add.addActionListener(new java.awt.event.ActionListener() {
@@ -70,8 +71,6 @@ public class AddMaterial extends javax.swing.JFrame {
         });
 
         jButton2.setText("Clear");
-
-        jButton1.setText("HOME");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -96,9 +95,7 @@ public class AddMaterial extends javax.swing.JFrame {
                                     .addComponent(mat_name, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(mat_add)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jButton2)
@@ -132,8 +129,7 @@ public class AddMaterial extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mat_add)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(jButton2))
                 .addGap(26, 26, 26))
         );
 
@@ -157,6 +153,7 @@ public class AddMaterial extends javax.swing.JFrame {
     }//GEN-LAST:event_mat_nameActionPerformed
 
     private void mat_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mat_addActionPerformed
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_mat_addActionPerformed
 
@@ -196,7 +193,6 @@ public class AddMaterial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
