@@ -1,4 +1,8 @@
 
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -55,6 +59,11 @@ public class AddVendor extends javax.swing.JFrame {
         jLabel5.setText("Telephone");
 
         jButton1.setText("Add");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Clear");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -63,7 +72,8 @@ public class AddVendor extends javax.swing.JFrame {
             }
         });
 
-        material_type.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mango", "Suger", "Water", "Bottles" }));
+        material_type.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mango", "Sugar", "Water", "Bottle" }));
+        material_type.setSelectedIndex(-1);
         material_type.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 material_typeActionPerformed(evt);
@@ -85,7 +95,7 @@ public class AddVendor extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                                     .addComponent(vendor_telephone, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel4)
@@ -154,9 +164,40 @@ public class AddVendor extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         vendor_name.setText("");
+        material_type.setSelectedIndex(-1);
         vendor_address.setText("");
         vendor_telephone.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String name = vendor_name.getText();
+        String type = (String)material_type.getSelectedItem();
+        String address = vendor_address.getText();
+        String tel = vendor_telephone.getText();
+        
+        if(name.equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Enter name");
+        }else if(material_type.getSelectedIndex() == -1){
+            JOptionPane.showMessageDialog(rootPane, "Select type");
+        }else if(address.equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Enter Address");
+        }else if(tel.equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Enter Telehone No");
+        }else{
+            try {
+                Statement s = DBConnect.getConnection().createStatement();
+                s.executeUpdate("insert into vendor (name,material,address,telephone) values ('" + name + "','" + type + "','"+address+"','"+tel+"')");
+                vendor_name.setText("");
+                material_type.setSelectedIndex(-1);
+                vendor_address.setText("");
+                vendor_telephone.setText("");
+                JOptionPane.showMessageDialog(rootPane, "Successfully saved");
+            } catch (Exception e) {
+                System.out.println("Exception = "+e);
+            }
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
