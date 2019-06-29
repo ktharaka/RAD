@@ -9,7 +9,6 @@ import net.proteanit.sql.DbUtils;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Bavindu Dilshan
@@ -39,9 +38,14 @@ public class VendorDetails extends javax.swing.JFrame {
         vendor_delete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        load = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Vendor Details");
@@ -61,6 +65,11 @@ public class VendorDetails extends javax.swing.JFrame {
         });
 
         vendor_delete.setText("Delete");
+        vendor_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vendor_deleteActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -72,10 +81,10 @@ public class VendorDetails extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        load.setText("Load to table");
-        load.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Refresh");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -84,20 +93,21 @@ public class VendorDetails extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(393, 393, 393)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(vendor_add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(vendor_edit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(vendor_delete, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
-                    .addComponent(load))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(147, 147, 147))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(393, 393, 393)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(vendor_add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(vendor_edit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(vendor_delete, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
+                            .addComponent(jButton1))
+                        .addGap(116, 116, 116)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,13 +121,12 @@ public class VendorDetails extends javax.swing.JFrame {
                         .addComponent(vendor_edit)
                         .addGap(30, 30, 30)
                         .addComponent(vendor_delete)
-                        .addGap(33, 33, 33)
-                        .addComponent(load)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(185, 185, 185))))
+                        .addGap(42, 42, 42)
+                        .addComponent(jButton1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 77, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,28 +145,57 @@ public class VendorDetails extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void vendor_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vendor_editActionPerformed
+        editVendor e = new editVendor();
+        e.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_vendor_editActionPerformed
-
-    private void loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadActionPerformed
-
-        try {
-           Statement s = DBConnect.getConnection().createStatement();
-           ResultSet rs = s.executeQuery("select * from vendor");
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            
-        } catch (Exception e) {
-            System.out.println("Exception = "+e);
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loadActionPerformed
 
     private void vendor_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vendor_addActionPerformed
         AddVendor v = new AddVendor();
         v.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_vendor_addActionPerformed
+
+    private void vendor_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vendor_deleteActionPerformed
+        int row = jTable1.getSelectedRow();
+        String id = jTable1.getModel().getValueAt(row, 0).toString();
+
+        try {
+            Statement s = DBConnect.getConnection().createStatement();
+            s.executeUpdate("DELETE FROM vendor where id = '" + id + "'");
+            JOptionPane.showMessageDialog(rootPane, "Deleted");
+            ResultSet rs = s.executeQuery("select * from vendor");
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e) {
+            System.out.println("Exception = " + e);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_vendor_deleteActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        try {
+            Statement s = DBConnect.getConnection().createStatement();
+            ResultSet rs = s.executeQuery("select * from vendor");
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+
+        } catch (Exception e) {
+            System.out.println("Exception = " + e);
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowActivated
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            Statement s = DBConnect.getConnection().createStatement();
+            ResultSet rs = s.executeQuery("select * from vendor");
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+
+        } catch (Exception e) {
+            System.out.println("Exception = " + e);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,11 +233,11 @@ public class VendorDetails extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JButton load;
     private javax.swing.JButton vendor_add;
     private javax.swing.JButton vendor_delete;
     private javax.swing.JButton vendor_edit;
