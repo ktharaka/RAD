@@ -1,9 +1,15 @@
+
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Asus
@@ -44,7 +50,7 @@ public class AddMaterial extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Add Materials");
 
-        jLabel2.setText("Name");
+        jLabel2.setText("Type");
 
         jLabel3.setText("Quantity");
 
@@ -52,7 +58,7 @@ public class AddMaterial extends javax.swing.JFrame {
 
         jLabel5.setText("Select Vender");
 
-        mat_name.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mango", "Suger", "Water", "Bottle" }));
+        mat_name.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mango", "Sugar", "Water", "Bottle" }));
         mat_name.setSelectedIndex(-1);
         mat_name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,7 +66,6 @@ public class AddMaterial extends javax.swing.JFrame {
             }
         });
 
-        mat_ven_name.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Saroj", "Kasun", "Bavindu", "Bhanuka" }));
         mat_ven_name.setSelectedIndex(-1);
 
         mat_add.setText("Add");
@@ -71,6 +76,11 @@ public class AddMaterial extends javax.swing.JFrame {
         });
 
         jButton2.setText("Clear");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -81,18 +91,16 @@ public class AddMaterial extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(mat_ven_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
-                                .addGap(82, 82, 82)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(mat_quan)
-                                    .addComponent(mat_unit)
-                                    .addComponent(mat_name, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(82, 82, 82)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(mat_quan)
+                            .addComponent(mat_unit)
+                            .addComponent(mat_name, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(mat_ven_name, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -149,13 +157,61 @@ public class AddMaterial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mat_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mat_nameActionPerformed
+        mat_ven_name.removeAllItems();
+        String type = (String) mat_name.getSelectedItem();
+        try {
+            Statement s = DBConnect.getConnection().createStatement();
+            ResultSet r = s.executeQuery("select * from vendor where material='" + type + "'");
+            while (r.next()) {
+                String name = r.getString("name");
+                mat_ven_name.addItem(name);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception = " + e);
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_mat_nameActionPerformed
 
     private void mat_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mat_addActionPerformed
-        
+        String type = (String) mat_name.getSelectedItem();
+        String quan = mat_quan.getText();
+        String up = mat_unit.getText();
+        String ven = (String) mat_ven_name.getSelectedItem();
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDate now = LocalDate.now();
+        String date = dtf.format(now);
+
+        if (type.equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Select type");
+        } else if (quan.equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Enter Quantity");
+        } else if (up.equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Enter Unit Price");
+        } else {
+            try {
+                Statement s = DBConnect.getConnection().createStatement();
+                s.executeUpdate("insert into material (type,unitprice,quantity,vendor,date) values ('" + type + "','" + up + "','" + quan + "','" + ven + "','" + date + "')");
+                mat_name.setSelectedIndex(-1);
+                mat_quan.setText("");
+                mat_unit.setText("");
+                mat_ven_name.setSelectedIndex(-1);
+                JOptionPane.showMessageDialog(rootPane, "Successfully saved");
+            } catch (Exception e) {
+                System.out.println("Exception = " + e);
+            }
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_mat_addActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        mat_name.setSelectedIndex(-1);
+        mat_quan.setText("");
+        mat_unit.setText("");
+        mat_ven_name.setSelectedIndex(-1);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
