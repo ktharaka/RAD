@@ -146,18 +146,24 @@ public class Transfer_Material extends javax.swing.JFrame {
         String type = (String) jComboBox1.getSelectedItem();
         int quan = 0;
         int pquan = 0;
+        int wquan = 0;
         try {
             Statement s1 = DBConnect.getConnection().createStatement();
             Statement s2 = DBConnect.getConnection().createStatement();
+            Statement s3 = DBConnect.getConnection().createStatement();
             ResultSet r1 = s1.executeQuery("select quantity from material where type='" + type + "'");
             ResultSet r2 = s2.executeQuery("select quantity from toproduction where material='" + type + "'");
+            ResultSet r3 = s3.executeQuery("select quantity from wastage where type='" + type + "'");
             while (r1.next()) {
                 quan += r1.getInt("quantity");
             }
             while (r2.next()) {
                 pquan += r2.getInt("quantity");
             }
-            int cquan = quan - pquan;
+            while (r3.next()) {                
+                wquan += r3.getInt("quantity");
+            }
+            int cquan = quan - (pquan+wquan);
             jTextField1.setText(Integer.toString(cquan));
         } catch (Exception e) {
             System.out.println("Exception = " + e);
