@@ -1,3 +1,8 @@
+
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -36,6 +41,8 @@ public class waste_management_form extends javax.swing.JFrame {
         wastage_materials_add_btn = new javax.swing.JButton();
         wastage_materials_clear_btn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -46,6 +53,7 @@ public class waste_management_form extends javax.swing.JFrame {
         wastage_material_reason.setText("Reason");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mango", "Sugar", "Water", "Bottles" }));
+        jComboBox1.setSelectedIndex(-1);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -69,22 +77,12 @@ public class waste_management_form extends javax.swing.JFrame {
 
         jLabel1.setText("Add Wastage");
 
+        jLabel2.setText("Available Quantity");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(wastage_material_name)
-                    .addComponent(wastage_material_quantity)
-                    .addComponent(wastage_material_reason))
-                .addGap(89, 89, 89)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(wastage_material_quantity_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(wastage_material_reason_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(104, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(wastage_materials_add_btn)
@@ -95,6 +93,21 @@ public class waste_management_form extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(299, 299, 299))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(wastage_material_name)
+                    .addComponent(wastage_material_quantity)
+                    .addComponent(wastage_material_reason)
+                    .addComponent(jLabel2))
+                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(wastage_material_reason_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(wastage_material_quantity_txt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,11 +118,15 @@ public class waste_management_form extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(wastage_material_name)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(wastage_material_quantity)
-                    .addComponent(wastage_material_quantity_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(wastage_material_quantity_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(wastage_material_quantity))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(wastage_material_reason)
                     .addComponent(wastage_material_reason_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -117,7 +134,7 @@ public class waste_management_form extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(wastage_materials_add_btn)
                     .addComponent(wastage_materials_clear_btn))
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,6 +153,31 @@ public class waste_management_form extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        String type = (String) jComboBox1.getSelectedItem();
+        int quan = 0;
+        int pquan = 0;
+        int wquan = 0;
+        try {
+            Statement s1 = DBConnect.getConnection().createStatement();
+            Statement s2 = DBConnect.getConnection().createStatement();
+            Statement s3 = DBConnect.getConnection().createStatement();
+            ResultSet r1 = s1.executeQuery("select quantity from material where type='" + type + "'");
+            ResultSet r2 = s2.executeQuery("select quantity from toproduction where material='" + type + "'");
+            ResultSet r3 = s3.executeQuery("select quantity from wastage where type='" + type + "'");
+            while (r1.next()) {
+                quan += r1.getInt("quantity");
+            }
+            while (r2.next()) {
+                pquan += r2.getInt("quantity");
+            }
+            while (r3.next()) {                
+                wquan += r3.getInt("quantity");
+            }
+            int cquan = quan - (pquan+wquan);
+            jTextField1.setText(Integer.toString(cquan));
+        } catch (Exception e) {
+            System.out.println("Exception = " + e);
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
@@ -144,6 +186,31 @@ public class waste_management_form extends javax.swing.JFrame {
     }//GEN-LAST:event_wastage_material_quantity_txtActionPerformed
 
     private void wastage_materials_add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wastage_materials_add_btnActionPerformed
+        String type = (String) jComboBox1.getSelectedItem();
+        String aquan = jTextField1.getText();
+        String quan = wastage_material_quantity_txt.getText();
+        String reason = wastage_material_reason_txt.getText();
+        int iquan = Integer.parseInt(quan);
+        int iaquan = Integer.parseInt(aquan);
+        if (type.equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Select Material");
+        } else if (quan.equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Enter Quantity");
+        } else if (iquan > iaquan) {
+            JOptionPane.showMessageDialog(rootPane, "Amount not Available for wastage");
+        } else {
+            try {
+                Statement s = DBConnect.getConnection().createStatement();
+                s.executeUpdate("insert into wastage (type,quantity,reason) values ('" + type + "','" + quan + "','"+reason+"')");
+                jComboBox1.setSelectedIndex(-1);
+                jTextField1.setText("");
+                wastage_material_quantity_txt.setText("");
+                wastage_material_reason_txt.setText("");
+                JOptionPane.showMessageDialog(rootPane, "Successfully saved");
+            } catch (Exception e) {
+                System.out.println("Exception = " + e);
+            }
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_wastage_materials_add_btnActionPerformed
 
@@ -185,7 +252,9 @@ public class waste_management_form extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel wastage_material_name;
     private javax.swing.JLabel wastage_material_quantity;
     private javax.swing.JTextField wastage_material_quantity_txt;
