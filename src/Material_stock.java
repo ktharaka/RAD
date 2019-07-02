@@ -34,8 +34,19 @@ public class Material_stock extends javax.swing.JPanel {
         materials_stock_edit_btn = new javax.swing.JButton();
         materials_stock_delete_btn = new javax.swing.JButton();
 
-        jTextField1.setText("Materials Stock");
+        jPanel1.setBackground(new java.awt.Color(179, 169, 245));
 
+        jTextField1.setBackground(new java.awt.Color(143, 138, 171));
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTextField1.setText("        Materials Stock");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jTable1.setBackground(new java.awt.Color(70, 104, 171));
+        jTable1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -61,47 +72,55 @@ public class Material_stock extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        material_stock_add_btn.setBackground(new java.awt.Color(70, 104, 171));
+        material_stock_add_btn.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         material_stock_add_btn.setText("Add");
 
+        materials_stock_edit_btn.setBackground(new java.awt.Color(70, 104, 171));
+        materials_stock_edit_btn.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         materials_stock_edit_btn.setText("Edit");
 
+        materials_stock_delete_btn.setBackground(new java.awt.Color(70, 104, 171));
+        materials_stock_delete_btn.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         materials_stock_delete_btn.setText("Delete");
+        materials_stock_delete_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                materials_stock_delete_btnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(314, 314, 314))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(materials_stock_delete_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(materials_stock_edit_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(material_stock_add_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87))
+                .addContainerGap(86, Short.MAX_VALUE))
+            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
+                        .addGap(67, 67, 67)
                         .addComponent(material_stock_add_btn)
                         .addGap(18, 18, 18)
                         .addComponent(materials_stock_edit_btn)
                         .addGap(18, 18, 18)
-                        .addComponent(materials_stock_delete_btn)))
-                .addContainerGap(232, Short.MAX_VALUE))
+                        .addComponent(materials_stock_delete_btn))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(237, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -115,6 +134,14 @@ public class Material_stock extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void materials_stock_delete_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materials_stock_delete_btnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_materials_stock_delete_btnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
