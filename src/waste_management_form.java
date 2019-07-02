@@ -40,16 +40,22 @@ public class waste_management_form extends javax.swing.JFrame {
         wastage_material_reason_txt = new javax.swing.JTextField();
         wastage_materials_add_btn = new javax.swing.JButton();
         wastage_materials_clear_btn = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(225, 195, 126));
+
+        wastage_material_name.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         wastage_material_name.setText("Name");
 
+        wastage_material_quantity.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         wastage_material_quantity.setText("Quantity");
 
+        wastage_material_reason.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         wastage_material_reason.setText("Reason");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mango", "Sugar", "Water", "Bottles" }));
@@ -66,6 +72,9 @@ public class waste_management_form extends javax.swing.JFrame {
             }
         });
 
+        wastage_materials_add_btn.setBackground(new java.awt.Color(102, 0, 0));
+        wastage_materials_add_btn.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        wastage_materials_add_btn.setForeground(new java.awt.Color(255, 255, 255));
         wastage_materials_add_btn.setText("Add");
         wastage_materials_add_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,11 +82,38 @@ public class waste_management_form extends javax.swing.JFrame {
             }
         });
 
+        wastage_materials_clear_btn.setBackground(new java.awt.Color(102, 0, 0));
+        wastage_materials_clear_btn.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        wastage_materials_clear_btn.setForeground(new java.awt.Color(255, 255, 255));
         wastage_materials_clear_btn.setText("Clear");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel2.setText("Available Quantity");
+
+        jPanel2.setBackground(new java.awt.Color(102, 0, 0));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setBackground(new java.awt.Color(143, 138, 171));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Add Wastage");
 
-        jLabel2.setText("Available Quantity");
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -89,10 +125,6 @@ public class waste_management_form extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(wastage_materials_clear_btn)
                 .addGap(148, 148, 148))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(299, 299, 299))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,14 +139,15 @@ public class waste_management_form extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(wastage_material_quantity_txt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)))
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(43, 43, 43)
+                .addGap(11, 11, 11)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(wastage_material_name)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -134,7 +167,7 @@ public class waste_management_form extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(wastage_materials_add_btn)
                     .addComponent(wastage_materials_clear_btn))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -254,6 +287,7 @@ public class waste_management_form extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel wastage_material_name;
     private javax.swing.JLabel wastage_material_quantity;
