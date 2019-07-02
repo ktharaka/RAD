@@ -77,7 +77,7 @@ public class materialDetails extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Type", "Unitprice", "Quantity", "Vendor", "Date"
+                "ID", "Material", "Unitprice", "Quantity", "Vendor", "Date"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
