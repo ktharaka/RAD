@@ -34,7 +34,7 @@ public class Material_stock extends javax.swing.JPanel {
         materials_stock_edit_btn = new javax.swing.JButton();
         materials_stock_delete_btn = new javax.swing.JButton();
 
-        jPanel1.setBackground(new java.awt.Color(179, 169, 245));
+        jPanel1.setBackground(new java.awt.Color(225, 195, 126));
 
         jTextField1.setBackground(new java.awt.Color(143, 138, 171));
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
