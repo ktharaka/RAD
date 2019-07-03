@@ -206,8 +206,7 @@ public class Transfer_Material extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Select Material");
         } else if (quan.equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Enter Quantity");
-        }
-        if (!transfer_quantity.getText().equals("")) {
+        }else if (!transfer_quantity.getText().equals("")) {
             int iquan = Integer.parseInt(quan);
             int icquan = Integer.parseInt(cquan);
             if (iquan > icquan) {
