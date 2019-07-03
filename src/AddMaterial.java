@@ -211,7 +211,7 @@ public class AddMaterial extends javax.swing.JFrame {
         LocalDate now = LocalDate.now();
         String date = dtf.format(now);
 
-        if (type.equals("")) {
+        if (type==null) {
             JOptionPane.showMessageDialog(rootPane, "Select type");
         } else if (quan.equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Enter Quantity");
