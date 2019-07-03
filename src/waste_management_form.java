@@ -8,7 +8,6 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author ASUS
@@ -203,10 +202,10 @@ public class waste_management_form extends javax.swing.JFrame {
             while (r2.next()) {
                 pquan += r2.getInt("quantity");
             }
-            while (r3.next()) {                
+            while (r3.next()) {
                 wquan += r3.getInt("quantity");
             }
-            int cquan = quan - (pquan+wquan);
+            int cquan = quan - (pquan + wquan);
             jTextField1.setText(Integer.toString(cquan));
         } catch (Exception e) {
             System.out.println("Exception = " + e);
@@ -223,25 +222,31 @@ public class waste_management_form extends javax.swing.JFrame {
         String aquan = jTextField1.getText();
         String quan = wastage_material_quantity_txt.getText();
         String reason = wastage_material_reason_txt.getText();
-        int iquan = Integer.parseInt(quan);
-        int iaquan = Integer.parseInt(aquan);
-        if (type.equals("")) {
+
+        if (type == null) {
             JOptionPane.showMessageDialog(rootPane, "Select Material");
         } else if (quan.equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Enter Quantity");
-        } else if (iquan > iaquan) {
-            JOptionPane.showMessageDialog(rootPane, "Amount not Available for wastage");
-        } else {
-            try {
-                Statement s = DBConnect.getConnection().createStatement();
-                s.executeUpdate("insert into wastage (type,quantity,reason) values ('" + type + "','" + quan + "','"+reason+"')");
-                jComboBox1.setSelectedIndex(-1);
-                jTextField1.setText("");
-                wastage_material_quantity_txt.setText("");
-                wastage_material_reason_txt.setText("");
-                JOptionPane.showMessageDialog(rootPane, "Successfully saved");
-            } catch (Exception e) {
-                System.out.println("Exception = " + e);
+        }else if(reason.equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Enter Reason");
+        }else if (!wastage_material_quantity_txt.getText().equals("")) {
+            int iquan = Integer.parseInt(quan);
+            int iaquan = Integer.parseInt(aquan);
+            if (iquan > iaquan) {
+                JOptionPane.showMessageDialog(rootPane, "Amount not Available for wastage");
+            } else {
+                try {
+                    Statement s = DBConnect.getConnection().createStatement();
+                    s.executeUpdate("insert into wastage (type,quantity,reason) values ('" + type + "','" + quan + "','" + reason + "')");
+                    jComboBox1.setSelectedIndex(-1);
+                    jTextField1.setText("");
+                    wastage_material_quantity_txt.setText("");
+                    wastage_material_reason_txt.setText("");
+                    JOptionPane.showMessageDialog(rootPane, "Successfully saved");
+                } catch (Exception e) {
+                    System.out.println("Exception = " + e);
+                }
+
             }
         }
         // TODO add your handling code here:
