@@ -186,10 +186,10 @@ public class Transfer_Material extends javax.swing.JFrame {
             while (r2.next()) {
                 pquan += r2.getInt("quantity");
             }
-            while (r3.next()) {                
+            while (r3.next()) {
                 wquan += r3.getInt("quantity");
             }
-            int cquan = quan - (pquan+wquan);
+            int cquan = quan - (pquan + wquan);
             jTextField1.setText(Integer.toString(cquan));
         } catch (Exception e) {
             System.out.println("Exception = " + e);
@@ -201,25 +201,31 @@ public class Transfer_Material extends javax.swing.JFrame {
         String type = (String) jComboBox1.getSelectedItem();
         String quan = transfer_quantity.getText();
         String cquan = jTextField1.getText();
-        int iquan = Integer.parseInt(quan);
-        int icquan = Integer.parseInt(cquan);
-        if (type.equals("")) {
+
+        if (type == null) {
             JOptionPane.showMessageDialog(rootPane, "Select Material");
         } else if (quan.equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Enter Quantity");
-        } else if (iquan > icquan) {
-            JOptionPane.showMessageDialog(rootPane, "Amount not Available");
-        } else {
-            try {
-                Statement s = DBConnect.getConnection().createStatement();
-                s.executeUpdate("insert into toproduction (material,quantity) values ('" + type + "','" + quan + "')");
-                jComboBox1.setSelectedIndex(-1);
-                jTextField1.setText("");
-                transfer_quantity.setText("");
-                JOptionPane.showMessageDialog(rootPane, "Successfully saved");
-            } catch (Exception e) {
-                System.out.println("Exception = " + e);
+        }
+        if (!transfer_quantity.getText().equals("")) {
+            int iquan = Integer.parseInt(quan);
+            int icquan = Integer.parseInt(cquan);
+            if (iquan > icquan) {
+                JOptionPane.showMessageDialog(rootPane, "Amount not Available");
+            } else {
+                try {
+                    Statement s = DBConnect.getConnection().createStatement();
+                    s.executeUpdate("insert into toproduction (material,quantity) values ('" + type + "','" + quan + "')");
+                    jComboBox1.setSelectedIndex(-1);
+                    jTextField1.setText("");
+                    transfer_quantity.setText("");
+                    JOptionPane.showMessageDialog(rootPane, "Successfully saved");
+                } catch (Exception e) {
+                    System.out.println("Exception = " + e);
+                }
+
             }
+
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
