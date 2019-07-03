@@ -173,17 +173,20 @@ public class VendorDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_vendor_addActionPerformed
 
     private void vendor_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vendor_deleteActionPerformed
-        int row = jTable1.getSelectedRow();
-        String id = jTable1.getModel().getValueAt(row, 0).toString();
-
-        try {
-            Statement s = DBConnect.getConnection().createStatement();
-            s.executeUpdate("DELETE FROM vendor where id = '" + id + "'");
-            JOptionPane.showMessageDialog(rootPane, "Deleted");
-            ResultSet rs = s.executeQuery("select * from vendor");
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-        } catch (Exception e) {
-            System.out.println("Exception = " + e);
+        if (jTable1.getSelectionModel().isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Select first");
+        } else {
+            try {
+                int row = jTable1.getSelectedRow();
+                String id = jTable1.getModel().getValueAt(row, 0).toString();
+                Statement s = DBConnect.getConnection().createStatement();
+                s.executeUpdate("DELETE FROM vendor where id = '" + id + "'");
+                JOptionPane.showMessageDialog(rootPane, "Deleted");
+                ResultSet rs = s.executeQuery("select * from vendor");
+                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            } catch (Exception e) {
+                System.out.println("Exception = " + e);
+            }
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_vendor_deleteActionPerformed
