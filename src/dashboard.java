@@ -84,11 +84,14 @@ public class dashboard extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(102, 0, 0));
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jButton5.setForeground(new java.awt.Color(240, 240, 240));
-        jButton5.setText("Reports");
+        jButton5.setText("Current Stock");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Asus\\Documents\\NetBeansProjects\\RAD\\RAD\\src\\picture\\images.png")); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Myanmar Text", 1, 24)); // NOI18N
         jLabel1.setText("Material Management");
@@ -197,6 +200,12 @@ public class dashboard extends javax.swing.JFrame {
         t.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        summary s = new summary();
+        s.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
